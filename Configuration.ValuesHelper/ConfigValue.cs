@@ -97,5 +97,12 @@ namespace Configuration.ValuesHelper
 
             return dateTime;
         }
+
+        public static bool CheckSettingExists(string key)
+        {
+            var value = reader.GetValue(key, typeof(string)) as string;
+
+            return !string.IsNullOrWhiteSpace(value);
+        }
     }
 }
