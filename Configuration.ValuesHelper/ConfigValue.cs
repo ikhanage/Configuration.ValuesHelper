@@ -16,18 +16,8 @@ namespace Configuration.ValuesHelper
         }
 
         public static bool GetAsBool(string key)
-        {
-            var nullBool = reader.GetValue(key, typeof(bool?)) as bool?;
-
-            if (!nullBool.HasValue)
-                throw new ConfigurationException(string.Format("The value of {0} was not a bool.", key));
-
-            return nullBool.Value;
-        }
-
-        public static bool? GetAsNullableBool(string key)
-        {
-            return reader.GetValue(key, typeof(bool?)) as bool?;
+        {            
+            return Convert.ToBoolean(reader.GetValue(key, typeof(bool)));
         }
 
         public static int GetAsInt(string key)
@@ -35,7 +25,7 @@ namespace Configuration.ValuesHelper
             var nullString = reader.GetValue(key, typeof(string)) as string;
 
             int @int;
-            var isBool = Int32.TryParse(nullString, out @int);
+            var isBool = int.TryParse(nullString, out @int);
 
             if (!isBool)
                 throw new ConfigurationException(string.Format("The value of {0} was not an int.", key));

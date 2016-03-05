@@ -11,6 +11,8 @@ namespace Configuration.ValuesHelperTestsProject
         const string intKey = "TestInt";
         const string doubleKey = "TestDouble";
         const string stringKey = "TestString";
+        const string falseString = "FalseString";
+        const string trueString = "TrueString";
         const string dmykey = "TestDateStringddmmyyyy";
         const string dmyhmkey = "TestDateStringddmmyyyyhhmm";
 
@@ -29,6 +31,18 @@ namespace Configuration.ValuesHelperTestsProject
         public void NotInt()
         {
             var actualResult = ConfigValue.GetAsInt(stringKey);           
+        }
+
+        [TestMethod]
+        public void ParseTrueString()
+        {
+            Assert.IsTrue(ConfigValue.GetAsBool(trueString));
+        }
+
+        [TestMethod]
+        public void ParseFalsetring()
+        {
+            Assert.IsFalse(ConfigValue.GetAsBool(falseString));
         }
 
         [TestMethod]
