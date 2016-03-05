@@ -15,6 +15,7 @@ namespace Configuration.ValuesHelperTestsProject
         const string trueString = "TrueString";
         const string dmykey = "TestDateStringddmmyyyy";
         const string dmyhmkey = "TestDateStringddmmyyyyhhmm";
+        const string noSetting = "NoSettings";
 
         [TestMethod]
         public void CorrectInt()
@@ -131,6 +132,22 @@ namespace Configuration.ValuesHelperTestsProject
             var actualResult = ConfigValue.GetAsNullableDateTime(stringKey);
 
             Assert.AreEqual(null, actualResult);
+        }
+
+        [TestMethod]
+        public void ValueExistsCheck()
+        {
+            var actualResult = ConfigValue.CheckSettingExists(stringKey);
+
+            Assert.AreEqual(true, actualResult);
+        }
+
+        [TestMethod]
+        public void ValueNotExistsCheck()
+        {
+            var actualResult = ConfigValue.CheckSettingExists(noSetting);
+
+            Assert.AreEqual(false, actualResult);
         }
     }
 }
